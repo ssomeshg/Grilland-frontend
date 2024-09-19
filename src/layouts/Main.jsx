@@ -14,7 +14,7 @@ function Main() {
     setFormModal(true)
   };
   return (
-    <div className="pt-24  min-h-[100vh] relative ml-[18rem]">
+    <div className="pt-24  min-h-[100vh] relative lg:ml-[18rem]">
       <div className="px-10 py-5">
         <div className="flex justify-between items-center">
           <div>

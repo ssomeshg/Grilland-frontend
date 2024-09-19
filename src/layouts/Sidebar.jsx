@@ -11,7 +11,7 @@ import CkLogo from "../assets/images/ck-removebg.png";
 
 function Sidebar() {
   return (
-    <div className="w-72 bg-gradient-to-tl from-yellow-500 to-yellow-300 absolute z-10 min-h-[100vh]">
+    <div className="w-72 bg-gradient-to-tl from-yellow-500 to-yellow-300 absolute z-10 min-h-[100vh] hidden lg:block">
       <div className="p-5 h-24 flex gap-2 items-center">
         <div>
           <img src={CkLogo} alt="" className="pr-2 h-full w-24" />
