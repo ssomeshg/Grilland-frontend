@@ -5,7 +5,7 @@ import { FaUserAlt } from "react-icons/fa";
 
 function Header() {
   return (
-    <header className='py-5 pl-72 pr-5 h-24 bg-white shadow-md absolute w-full'>
+    <header className='py-5 lg:pl-72 pr-5 h-24 bg-white shadow-md absolute w-full'>
         <div className="navlogos flex gap-5 items-center justify-end px-2">
             <div className='text-right'>
                 <p className='text-sm font-medium text-gray-500'>Good Morning !</p>

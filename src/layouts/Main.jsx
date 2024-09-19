@@ -14,7 +14,7 @@ function Main() {
     setFormModal(true)
   };
   return (
-    <div className="pt-24 ml-[18rem] min-h-[100vh] relative">
+    <div className="pt-24 lg:ml-[18rem] min-h-[100vh] relative">
       <div className="px-10 py-5">
         <div className="flex justify-between items-center">
           <div>
@@ -35,6 +35,7 @@ function Main() {
           <ButtonComp
             icon={<FaPlus />}
             buttonName={"Add Category"}
+            btnClass={'hidden md:block'}
             events={() => {
               handleModal();
             }}

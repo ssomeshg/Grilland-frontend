@@ -41,7 +41,7 @@ function Table() {
   };
 
   return (
-    <div className="bg-white rounded-md shadow-md overflow-hidden">
+    <div className="bg-white rounded-md shadow-md overflow-hidden overflow-x-scroll">
       <table className="p-2 rounded w-full">
         <tr className="text-sm font-medium  bg-gray-100">
           {TABLE_HEAD.map((head) => (
