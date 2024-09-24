@@ -10,7 +10,7 @@ import { AppContext } from "../context/AppContext";
 
 function Category() {
   //get data from context provider
-  const categoryItems = useContext(AppContext);
+  const {getCategory} = useContext(AppContext);
 
 
   const [formModal, setFormModal] = useState(false);
@@ -48,7 +48,7 @@ function Category() {
                   handleModal();
                 }}
               />
-              <Table categoryItems={categoryItems} />
+              <Table getCategory={getCategory} />
             </div>
           </div>
           {formModal ? (

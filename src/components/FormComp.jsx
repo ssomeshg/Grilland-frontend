@@ -7,13 +7,17 @@ import ButtonComp from "./ButtonComp";
 import { AppContext } from "../context/AppContext";
 
 function FormComp({ setFormModal, formModal }) {
-  const getCategory = useContext(AppContext);
+  const { getCategory } = useContext(AppContext);
 
   // Modal close
   const handleModalClose = () => {
     setFormModal(false);
   };
-  const [formObject, setFormObject] = useState({ name: null, image: null });
+  const [formObject, setFormObject] = useState({
+    name: null,
+    image: null,
+  
+  });
 
   // handle Category Name
   const [categoryName, setCategoryName] = useState(null);
@@ -23,18 +27,25 @@ function FormComp({ setFormModal, formModal }) {
 
   // handle category image
   const [formCategoryImage, setFormCategoryImage] = useState(null);
-  const imageChange = (e) => {
-    console.log(e.target.value);
-    console.log(e.target.files[0]);
 
+  const imageChange = (e) => {
     setFormCategoryImage(URL.createObjectURL(e.target.files[0]));
   };
-  
+
   // handle form submit
   const handleCategoryForm = () => {
-    setFormObject({ name: categoryName, image: formCategoryImage });
-    getCategory.getCategory.push(formObject);
-    console.log(formObject);
+  
+
+    const newCategory = {
+      name: categoryName,
+      image: formCategoryImage,
+     
+    };
+    console.log(newCategory);
+
+    setFormObject(newCategory);
+    getCategory.push(newCategory);
+    handleModalClose();
   };
 
   return (
@@ -78,6 +89,7 @@ function FormComp({ setFormModal, formModal }) {
                 id="fileUpload"
                 className="hidden"
                 onChange={imageChange}
+                required
               />
             </div>
           </div>
@@ -89,6 +101,7 @@ function FormComp({ setFormModal, formModal }) {
               type="text"
               placeholder="category Name"
               onChange={handleCategory}
+              required
               className="bg-white mt-1 w-full border-yellow-300 border rounded-md p-3 text-sm focus:outline-none focus:border focus:border-yellow-500 placeholder:text-gray-200"
             />
           </div>
