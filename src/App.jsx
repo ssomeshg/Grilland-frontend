@@ -1,16 +1,21 @@
-import {react, useState } from "react";
- import "./App.css";
-import Sidebar from "./layouts/Sidebar";
-import Dashboard from "./pages/Dashboard";
+import React from "react";
+import "./App.css";
+import Category from "./pages/Category";
+import { Route, Routes } from "react-router-dom";
+
+// layouts
+import Main from "./layouts/Main";
+import ContextProvider from "./context/AppContext";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div className="">
-        <Dashboard/>
-      </div>
+      <ContextProvider>
+        <Main />
+        <Routes>
+          <Route path="/" element={<Category />} />
+        </Routes>
+      </ContextProvider>
     </>
   );
 }
