@@ -16,7 +16,7 @@ const TABLE_HEAD = [
 
 
 function Table({getCategory}) {
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(null);
 
   const handleCheck = (e) => {
     const checkStatus = e.target.checked;
@@ -24,7 +24,7 @@ function Table({getCategory}) {
   };
 
   return (
-    <div className="bg-white rounded-md shadow-xl overflow-hidden overflow-x-scroll">
+    <div className="bg-white rounded-md shadow-xl overflow-hidden overflow-x-scroll" >
       <table className="p-2 rounded w-full">
         <tr className="text-sm font-medium  bg-gray-100">
           {TABLE_HEAD.map((head, index) => (

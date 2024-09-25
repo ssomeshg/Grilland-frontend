@@ -16,7 +16,7 @@ function FormComp({ setFormModal, formModal }) {
   const [formObject, setFormObject] = useState({
     name: null,
     image: null,
-  
+    date: null,
   });
 
   // handle Category Name
@@ -32,14 +32,20 @@ function FormComp({ setFormModal, formModal }) {
     setFormCategoryImage(URL.createObjectURL(e.target.files[0]));
   };
 
+  // Date handle function
+  const dateSet = new Date();
+  const formattedDate = dateSet.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+
   // handle form submit
   const handleCategoryForm = () => {
-  
-
     const newCategory = {
       name: categoryName,
       image: formCategoryImage,
-     
+      date: formattedDate,
     };
     console.log(newCategory);
 
@@ -101,7 +107,7 @@ function FormComp({ setFormModal, formModal }) {
               type="text"
               placeholder="category Name"
               onChange={handleCategory}
-              required
+              required={true}
               className="bg-white mt-1 w-full border-yellow-300 border rounded-md p-3 text-sm focus:outline-none focus:border focus:border-yellow-500 placeholder:text-gray-200"
             />
           </div>
