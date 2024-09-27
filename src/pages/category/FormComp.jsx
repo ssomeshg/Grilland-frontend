@@ -67,7 +67,7 @@ function FormComp({ setFormModal, formModal }) {
     e.preventDefault();
 
     if (categoryName === "" || formCategoryImage === null) {
-      alert("Category Field id Empty ");
+      toast.error("Category Field id Empty ");
     } else {
       const categoryNo = getCategory.length + 1;
       console.log(categoryNo);
@@ -90,7 +90,7 @@ function FormComp({ setFormModal, formModal }) {
     <div>
       <Toaster />
       <div className="w-full h-full fixed top-0 left-0 z-20" style={{backdropFilter:"blur(8px)"}}></div>
-      <div className="fixed bg-white shadow-xl rounded-md p-4 border border-yellow-400  min-w-96 m-auto z-30 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%]">
+      <div className="fixed bg-white shadow-xl rounded-md p-4 border border-yellow-400  min-w-96 m-auto z-30 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] transform transition-transform scale-100">
         <div className="flex justify-between items-center py-3 mb-5">
           <p className="text-lg font-semibold">Add Category</p>
           <div onClick={() => handleModalClose()}>

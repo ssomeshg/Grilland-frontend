@@ -4,14 +4,15 @@ const getSubcategory = [
     subcategoryImage: null,
     date: "12-sep-2024",
     status: true,
-    products: [{
-        productName:"plate Shawarma",
-        productImage:null,
-        productStatus:true,
-        productPrice:110,
-    }],
+    products: [
+      {
+        productName: "plate Shawarma",
+        productImage: null,
+        productStatus: true,
+        productPrice: 110,
+      },
+    ],
   },
 ];
-
 
 export default getSubcategory;
