@@ -26,7 +26,7 @@ function Table({getCategory}) {
   return (
     <div className="bg-white rounded-md shadow-xl overflow-hidden overflow-x-scroll" >
       <table className="p-2 rounded w-full">
-        <tr className="text-sm font-medium  bg-gray-100">
+        <thead className="text-sm font-medium  bg-gray-100">
           {TABLE_HEAD.map((head, index) => (
             <th
               key={index}
@@ -41,12 +41,12 @@ function Table({getCategory}) {
               </p>
             </th>
           ))}
-        </tr>
+        </thead>
         <tbody>
           {/* get image form AppContext provider */}
           {getCategory.map(({ sNo, image, name, date, status }, index) => {
             return (
-              <tr className="border-b ">
+              <tr key={index} className="border-b ">
                 <td className=" text-center p-3">
                   <p>{index + 1}</p>
                 </td>
@@ -82,7 +82,7 @@ function Table({getCategory}) {
                     <input
                       type="checkbox"
                       value=""
-                      class="sr-only peer"
+                      className="sr-only peer"
                       checked={status}
                       onChange={(e) => console.log(e.target.checked)}
                     />

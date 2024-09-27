@@ -2,11 +2,11 @@ import React, { useContext, useState } from "react";
 
 // icons
 import { IoSearch } from "react-icons/io5";
-import Table from "../components/Table";
-import ButtonComp from "../components/ButtonComp";
-import FormComp from "../components/FormComp";
+import Table from "./Table";
+import ButtonComp from "../../components/ButtonComp";
+import FormComp from "./FormComp";
 import { FaPlus } from "react-icons/fa";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../../context/AppContext";
 
 function Category() {
   //get data from context provider
@@ -22,7 +22,7 @@ function Category() {
   return (
     <>
       <div className="bg-white relative">
-        <div className="pt-24  min-h-[100vh] relative lg:ml-[18rem]">
+        <div className="pt-24  min-h-[100vh] h-full relative lg:ml-[18rem]">
           <div className="px-3 py-3 md:px-10 md:py-5">
             <div className="flex justify-between items-center">
               <div>

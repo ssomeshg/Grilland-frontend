@@ -9,17 +9,21 @@ import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 import CkLogo from "../assets/images/ck-removebg.png";
 
 function Header() {
-  const {handleSidebar} =useContext(AppContext)
+  const { handleSidebar, sidebar } = useContext(AppContext);
   const getProduct = useContext(AppContext);
   return (
     <header className="p-3 md:py-5  md:pr-5 h-24 bg-white shadow-md fixed top-0 md:absolute z-10 w-full lg:pl-72 flex justify-between items-center lg:block">
       <div className="block p-2 lg:hidden" onClick={handleSidebar}>
-        <HiOutlineBars3BottomLeft className="text-3xl"  />
+        <HiOutlineBars3BottomLeft className="text-3xl" />
       </div>
       <div className="navlogos flex gap-5 items-center justify-end px-2">
         <div className="text-right">
-          <p className="text-xs lg:text-sm font-medium text-gray-500">Good Morning !</p>
-          <p className="text-base lg:text-lg font-semibold lg:mt-1">COUSINS KITCHEN</p>
+          <p className="text-xs lg:text-sm font-medium text-gray-500">
+            Good Morning !
+          </p>
+          <p className="text-base lg:text-lg font-semibold lg:mt-1">
+            COUSINS KITCHEN
+          </p>
         </div>
 
         <div

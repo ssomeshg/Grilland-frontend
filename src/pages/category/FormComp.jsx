@@ -1,26 +1,29 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 // icons
 import { FaFileCirclePlus } from "react-icons/fa6";
 import { RiCloseFill } from "react-icons/ri";
-import ButtonComp from "./ButtonComp";
-import { AppContext } from "../context/AppContext";
+import ButtonComp from "../../components/ButtonComp";
+import { AppContext } from "../../context/AppContext";
 
 function FormComp({ setFormModal, formModal }) {
   const { getCategory } = useContext(AppContext);
+  const fileInputRef = useRef(null);
 
   // Modal close
   const handleModalClose = () => {
     setFormModal(false);
   };
   const [formObject, setFormObject] = useState({
-    name: null,
+    sNo: null,
     image: null,
+    name: null,
     date: null,
   });
 
   // handle Category Name
-  const [categoryName, setCategoryName] = useState(null);
+  const [categoryName, setCategoryName] = useState("");
   const handleCategory = (e) => {
     setCategoryName(e.target.value);
   };
@@ -29,7 +32,26 @@ function FormComp({ setFormModal, formModal }) {
   const [formCategoryImage, setFormCategoryImage] = useState(null);
 
   const imageChange = (e) => {
-    setFormCategoryImage(URL.createObjectURL(e.target.files[0]));
+    try {
+      console.log("image starts");
+
+      const imageSize = e.target.files[0].size;
+
+      if (imageSize > 1000000) {
+        toast.error("Image Size Should be Less than 1MB");
+        // Clear the file input
+        fileInputRef.current.value = "";
+        return;
+      } else {
+        setFormCategoryImage(URL.createObjectURL(e.target.files[0]));
+        fileInputRef.current.value = "";
+      }
+
+      console.log("image ends");
+    } catch (error) {
+      console.error("Error in imageChange function:", error);
+      toast.error("An error occurred during image upload");
+    }
   };
 
   // Date handle function
@@ -41,22 +63,33 @@ function FormComp({ setFormModal, formModal }) {
   });
 
   // handle form submit
-  const handleCategoryForm = () => {
-    const newCategory = {
-      name: categoryName,
-      image: formCategoryImage,
-      date: formattedDate,
-    };
-    console.log(newCategory);
+  const handleCategoryForm = (e) => {
+    e.preventDefault();
 
-    setFormObject(newCategory);
-    getCategory.push(newCategory);
-    handleModalClose();
+    if (categoryName === "" || formCategoryImage === null) {
+      alert("Category Field id Empty ");
+    } else {
+      const categoryNo = getCategory.length + 1;
+      console.log(categoryNo);
+
+      const newCategory = {
+        sNo: categoryNo,
+        name: categoryName,
+        image: formCategoryImage,
+        date: formattedDate,
+      };
+      console.log(newCategory);
+
+      setFormObject(newCategory);
+      getCategory.push(newCategory);
+      handleModalClose();
+    }
   };
 
   return (
     <div>
-      <div className="bg-black opacity-20 w-full h-full fixed top-0 left-0 z-20"></div>
+      <Toaster />
+      <div className="w-full h-full fixed top-0 left-0 z-20" style={{backdropFilter:"blur(8px)"}}></div>
       <div className="fixed bg-white shadow-xl rounded-md p-4 border border-yellow-400  min-w-96 m-auto z-30 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%]">
         <div className="flex justify-between items-center py-3 mb-5">
           <p className="text-lg font-semibold">Add Category</p>
@@ -83,7 +116,7 @@ function FormComp({ setFormModal, formModal }) {
                   }
                 >
                   <img
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-top p-1 rounded-2xl"
                     src={formCategoryImage}
                     alt=""
                   />
@@ -94,6 +127,7 @@ function FormComp({ setFormModal, formModal }) {
                 name="fileUpload"
                 id="fileUpload"
                 className="hidden"
+                ref={fileInputRef}
                 onChange={imageChange}
                 required
               />
@@ -114,7 +148,7 @@ function FormComp({ setFormModal, formModal }) {
 
           <ButtonComp
             buttonName={"Add Item"}
-            events={() => handleCategoryForm()}
+            events={(e) => handleCategoryForm(e)}
           />
         </form>
       </div>
