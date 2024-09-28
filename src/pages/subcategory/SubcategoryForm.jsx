@@ -117,7 +117,7 @@ function SubcategoryForm({ setFormModal, formModal }) {
                 className="bg-white mt-1 w-full border-yellow-300 border rounded-md p-3 text-sm focus:outline-none focus:border focus:border-yellow-500 placeholder:text-gray-200"
               >
                 {getCategory.map(({ name }) => {
-                  return <option value="">{name}</option>;
+                  return <option value="" className="p-4">{name}</option>;
                 })}
               </select>
             </div>
