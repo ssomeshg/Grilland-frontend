@@ -1,8 +1,9 @@
-import { React, useState } from "react";
+import { React, useContext, useState } from "react";
 
 // icons
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
+import { AppContext } from "../../context/AppContext";
 
 const TABLE_HEAD = [
   "SI.No:",
@@ -13,18 +14,35 @@ const TABLE_HEAD = [
   "Action",
 ];
 
-
-
-function Table({getCategory}) {
+function Table({ getCategory }) {
+  const { formObject, setFormObject } = useContext(AppContext);
   const [status, setStatus] = useState(null);
 
   const handleCheck = (e) => {
     const checkStatus = e.target.checked;
     console.log(checkStatus);
   };
+  const handleCategoryDelete = (deleteItemIndexValue) => {
+    console.log(deleteItemIndexValue);
+    const itemId = formObject.length - 1;
+
+    const tempArrItem = formObject.filter((item) => {
+      if (deleteItemIndexValue + 1 == item.sNo) {
+        console.log(deleteItemIndexValue);
+
+        console.log(item.length - 1);
+
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+    setFormObject(tempArrItem);
+  };
 
   return (
-    <div className="bg-white rounded-md shadow-xl overflow-hidden overflow-x-scroll" >
+    <div className="bg-white rounded-md shadow-xl overflow-hidden overflow-x-scroll">
       <table className="p-2 rounded w-full">
         <thead className="text-sm font-medium  bg-gray-100">
           {TABLE_HEAD.map((head, index) => (
@@ -44,7 +62,7 @@ function Table({getCategory}) {
         </thead>
         <tbody>
           {/* get image form AppContext provider */}
-          {getCategory.map(({ sNo, image, name, date, status }, index) => {
+          {formObject.map(({ sNo, image, name, date, status }, index) => {
             return (
               <tr key={index} className="border-b ">
                 <td className=" text-center p-3">
@@ -98,8 +116,14 @@ function Table({getCategory}) {
                     color="blue-gray"
                     className="text-lg font-medium text-gray-900 text-center flex justify-center gap-2 p-3"
                   >
-                    <FiEdit className="text-center cursor-pointer" onClick={()=>console.log(categoryItems.getCategory)} />
-                    <AiOutlineDelete className="text-center cursor-pointer" />
+                    <FiEdit
+                      className="text-center cursor-pointer"
+                      onClick={() => console.log(categoryItems.getCategory)}
+                    />
+                    <AiOutlineDelete
+                      className="text-center cursor-pointer"
+                      onClick={() => handleCategoryDelete(index)}
+                    />
                   </div>
                 </td>
               </tr>

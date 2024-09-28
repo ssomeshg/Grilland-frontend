@@ -7,12 +7,15 @@ export const AppContext = createContext({
   getSubcategory,
   activeNav: 1,
   sidebar: true,
+  formObject: {},
+  setFormObject: () => {},
   handleSidebar: () => {},
   handleSidebarClose: () => {},
   handleTab: () => {},
 });
 
 export default function ContextProvider({ children }) {
+
   // sidebar Context
   const [activeNav, setActiveNav] = useState(1);
 
@@ -28,11 +31,13 @@ export default function ContextProvider({ children }) {
     }
   };
   const handleSidebarClose = () => {
-   
     if (!sidebar) {
       setSidebar(!sidebar);
     }
   };
+
+  // Category Form State
+  const [formObject, setFormObject] = useState(getCategory);
 
   // Context Value
   const contextValue = {
@@ -43,6 +48,8 @@ export default function ContextProvider({ children }) {
     handleSidebarClose,
     handleSidebar,
     handleTab,
+    formObject,
+    setFormObject
   };
 
   return (

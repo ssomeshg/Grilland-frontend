@@ -8,19 +8,14 @@ import ButtonComp from "../../components/ButtonComp";
 import { AppContext } from "../../context/AppContext";
 
 function FormComp({ setFormModal, formModal }) {
-  const { getCategory } = useContext(AppContext);
+  const { getCategory,formObject,setFormObject } = useContext(AppContext);
   const fileInputRef = useRef(null);
 
   // Modal close
   const handleModalClose = () => {
     setFormModal(false);
   };
-  const [formObject, setFormObject] = useState({
-    sNo: null,
-    image: null,
-    name: null,
-    date: null,
-  });
+
 
   // handle Category Name
   const [categoryName, setCategoryName] = useState("");
@@ -80,7 +75,7 @@ function FormComp({ setFormModal, formModal }) {
       };
       console.log(newCategory);
 
-      setFormObject(newCategory);
+      setFormObject([...formObject,newCategory]);
       getCategory.push(newCategory);
       handleModalClose();
     }

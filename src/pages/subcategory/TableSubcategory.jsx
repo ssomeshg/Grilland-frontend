@@ -20,6 +20,9 @@ function TableSubcategory({ getSubcategory }) {
     console.log(checkStatus);
   };
 
+  const handleEditSubcategory = (indexValue) => {
+    indexValue
+  };
   return (
     <div className="bg-white rounded-md shadow-xl overflow-hidden overflow-x-scroll">
       <table className="p-2 rounded w-full">
@@ -98,7 +101,7 @@ function TableSubcategory({ getSubcategory }) {
                     >
                       <FiEdit
                         className="text-center cursor-pointer"
-                        onClick={() => console.log(categoryItems.getCategory)}
+                        onClick={() => handleEditSubcategory(index)}
                       />
                       <AiOutlineDelete className="text-center cursor-pointer" />
                     </div>
